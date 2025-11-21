@@ -1,11 +1,8 @@
-
- import 'package:bloc/bloc.dart';
+import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:models_package/Data/Com/Person/dto.dart';
 import 'package:services_package/Interfaces/apiclient_middleware_service.dart';
 import 'package:services_package/api_client_service.dart';
-
-
 
 part 'person_list_event.dart';
 part 'person_list_state.dart';
@@ -25,7 +22,7 @@ class PersonListBloc extends Bloc<PersonListEvent, PersonListState> {
             setToken: false,
           );
 
-          if (response.data != null) {
+          if (response != null && response.data != null) {
             emit(LoadDataSource(response.data ?? []));
           } else {
             emit(LoadDataError());

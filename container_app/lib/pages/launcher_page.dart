@@ -1,10 +1,8 @@
 import 'package:erp_app/main.dart' as erp_app;
 import 'package:flutter/material.dart';
+import 'package:models_package/Base/language.dart';
 import 'login/login_page.dart';
 
-// void main() {
-//   runApp(const ShellApp());
-// }
 
 class ShellApp extends StatelessWidget {
   const ShellApp({super.key});
@@ -27,7 +25,9 @@ class LauncherPage extends StatelessWidget {
       return LoginPage();
     }),
     _AppOption('ERP App', Icons.business, () {
-      return erp_app.MyApp();
+      return erp_app.buildERPApp(
+          Language(id: 0, smallName: 'fa', completeName: 'fa_IR', bigName: 'IR')
+      );
     }),
     _AppOption('Other', Icons.widgets, () {
       return const Scaffold(body: Center(child: Text('Other App')));

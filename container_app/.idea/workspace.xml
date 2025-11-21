@@ -5,17 +5,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fdc96447-a2d0-4459-bd42-691ecf98b057" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/lib/elements/html_text_parser.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../erp_app/lib/pages/home/dashboard/dashboard.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../packages/models_package/lib/Base/enums.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../packages/models_package/lib/Base/language.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../packages/services_package/lib/page_cache_manager.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../packages/ui_components_package/lib/common_componenets/Buttons/language_button/language_button.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../packages/ui_components_package/lib/common_componenets/Buttons/language_button/language_cubit.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../packages/ui_components_package/lib/common_componenets/Buttons/language_button/language_state.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../packages/ui_components_package/lib/common_componenets/Buttons/language_button_standalone/language_button_stand_alone.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../packages/ui_components_package/lib/common_componenets/Buttons/language_button_standalone/language_button_stand_alone_cubit.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../packages/ui_components_package/lib/common_componenets/Buttons/language_button_standalone/language_button_stand_alone_state.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../packages/models_package/lib/Data/Auth/Menu/dto.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/.gradle/8.12/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/8.12/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/.gradle/8.12/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/8.12/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/gradlew" beforeDir="false" afterPath="$PROJECT_DIR$/android/gradlew" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/pages/launcher_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/launcher_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/pages/login/login_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/login/login_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../erp_app/lib/components/lists/list_appbar.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../erp_app/lib/components/lists/list_pagination.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../erp_app/lib/components/mainlayout/main_layout.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../erp_app/lib/components/mainlayout/main_layout.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../erp_app/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../erp_app/lib/main.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../erp_app/lib/pages/lists/com/person/person_list_bloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../erp_app/lib/pages/lists/com/person/person_list_bloc.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../erp_app/lib/pages/lists/com/person/person_list_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../erp_app/lib/pages/lists/com/person/person_list_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../erp_app/lib/pages/profile/profile.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../erp_app/lib/pages/profile/profile.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../erp_app/super_app.ps1" beforeDir="false" afterPath="$PROJECT_DIR$/../erp_app/super_app.ps1" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../packages/models_package/lib/Base/enums.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../packages/models_package/lib/Base/enums.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../packages/services_package/lib/Interfaces/apiclient_middleware_service.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../packages/services_package/lib/Interfaces/apiclient_middleware_service.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../packages/services_package/lib/page_cache_manager.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../packages/services_package/lib/page_cache_manager.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../packages/ui_components_package/lib/mobile_components/Components/list_appbar.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../packages/ui_components_package/lib/mobile_components/Components/list_appbar.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,11 +76,11 @@
     &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
     &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
     &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;io.flutter.project.isFirstOpen&quot;: &quot;true&quot;,
     &quot;io.flutter.reload.alreadyRun&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;X:/Projects/super_app_repo/container_app&quot;,
+    &quot;last_opened_file_path&quot;: &quot;X:/Super_App_Test/super_app_repo/container_app&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;settings.sync&quot;,
     &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;
   }

@@ -357,7 +357,6 @@ class _LoginPageBodyState extends State<LoginPageBody> {
   Widget build(BuildContext context) {
     return BlocListener<LoginBloc, LoginStates>(
       listener: (context, state) {
-        // Handle success state - navigate to home
         if (state is LoginSuccessState) {
           Navigator.pushAndRemoveUntil(
             context,

@@ -9,12 +9,12 @@ enum AppBarsMode {
 }
 
 enum NavButtonTabBarMode {
-  dashboardTabMode(-1),
   menuTabMode(0),
   newTabMode(1),
   openedTabMode(2),
   defaultTabMode(3),
-  profileTabMode(4);
+  profileTabMode(4),
+  dashboardTabMode(10);
 
   final int value;
 

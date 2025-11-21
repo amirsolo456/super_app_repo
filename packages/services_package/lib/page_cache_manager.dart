@@ -18,32 +18,41 @@ class PageCacheManager {
   PageCacheManager({this.maxAge = const Duration(minutes: 5)});
 
   Widget getOrCreate(int index, Widget Function() builder) {
-    if (_cache.containsKey(index)) {
-      _cache[index]!.touch();
-      return _cache[index]!.page;
+    try {
+      if (_cache.containsKey(index)) {
+        _cache[index]!.touch();
+        return _cache[index]!.page;
+      }
+      final page = builder();
+      _cache[index] = PageCacheItem(page);
+      return page;
     }
-
-    final page = builder();
-    _cache[index] = PageCacheItem(page);
-    return page;
+    catch (e) {
+      print(e);
+      return const SizedBox();
+    }
   }
 
   void cleanCacheExcept(int currentIndex) {
-    final now = DateTime.now();
+    try {
+      final now = DateTime.now();
 
-    final toRemove = <int>[];
+      final toRemove = <int>[];
 
-    _cache.forEach((index, item) {
-      if (index == currentIndex) return;
+      _cache.forEach((index, item) {
+        if (index == currentIndex) return;
 
-      final age = now.difference(item.lastAccess);
-      if (age > maxAge) {
-        toRemove.add(index);
+        final age = now.difference(item.lastAccess);
+        if (age > maxAge) {
+          toRemove.add(index);
+        }
+      });
+
+      for (var index in toRemove) {
+        _cache.remove(index);
       }
-    });
-
-    for (var index in toRemove) {
-      _cache.remove(index);
+    } catch (e) {
+      print(e);
     }
   }
 }

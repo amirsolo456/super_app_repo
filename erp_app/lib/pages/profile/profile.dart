@@ -14,18 +14,38 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  final Widget userInfoIcon = Image.asset('assets/images/userinfo.png');
+  final Widget userInfoIcon = Image.asset(
+    'assets/images/userinfo.png',
+    package: 'resources_package',
+  );
   final Widget userPasswordChange = Image.asset(
     'assets/images/user_password_change.png',
+    package: 'resources_package',
   );
-  final Widget userWallet = Image.asset('assets/images/user_wallet.png');
-  final Widget userSettings = Image.asset('assets/images/user_settings.png');
+  final Widget userWallet = Image.asset(
+    'assets/images/user_wallet.png',
+    package: 'resources_package',
+  );
+  final Widget userSettings = Image.asset(
+    'assets/images/user_settings.png',
+    package: 'resources_package',
+  );
   final Widget userOtherAccounts = Image.asset(
     'assets/images/user_other_accounts.png',
+    package: 'resources_package',
   );
-  final Widget userTitle = Image.asset('assets/images/user_title.png');
-  final Widget userDevices = Image.asset('assets/images/user_devices.png');
-  final Widget userSignOut = Image.asset('assets/images/user_sign_out.png');
+  final Widget userTitle = Image.asset(
+    'assets/images/user_title.png',
+    package: 'resources_package',
+  );
+  final Widget userDevices = Image.asset(
+    'assets/images/user_devices.png',
+    package: 'resources_package',
+  );
+  final Widget userSignOut = Image.asset(
+    'assets/images/user_sign_out.png',
+    package: 'resources_package',
+  );
   final TextStyle itemsStyle = GoogleFonts.abel(
     color: Color(0xFF585858),
     fontSize: 14,

@@ -4,7 +4,7 @@ $projects = @(
     "packages\services_package",
     "login_module",
     "erp_app",
-    "shell_app"
+    "container_app"
 )
 
 # دستور مشترک برای اجرا روی همه پروژه‌ها
@@ -35,7 +35,7 @@ Run-CommandOnAllProjects "flutter pub get"
 
 # 3️⃣ ساخت پروژه‌ها (مثال build apk برای shell_app)
 # فقط shell_app را build می‌کنیم
-Push-Location "shell_app"
+Push-Location "container_app"
 flutter build apk
 Pop-Location
 

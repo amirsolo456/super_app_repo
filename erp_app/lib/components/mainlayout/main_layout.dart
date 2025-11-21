@@ -5,9 +5,10 @@ import 'package:models_package/Base/enums.dart';
 import 'package:services_package/page_cache_manager.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import '../../pages/home/dashboard/dashboard.dart';
+import '../../pages/lists/auth/menu/menu_page.dart';
 import '../../pages/lists/com/person/person_list_page.dart';
 import '../../pages/profile/profile.dart';
-import '../lists/list_appbar.dart';
+import 'package:ui_components_package/mobile_components/Components/list_appbar.dart';
 
 class MainLayoutPage extends StatefulWidget {
   const MainLayoutPage({super.key});
@@ -52,34 +53,63 @@ class _MainLayoutPageState extends State<MainLayoutPage> {
   static double size = 40;
   static double topPadding = 10;
 
-  Widget _getPage(int index) {
-    if (_pageCache.containsKey(index)) {
-      _showSkeleton[index] = _showSkeleton[index] ?? false;
+  final Map<NavButtonTabBarMode, int> _tabToIndex = {
+    NavButtonTabBarMode.menuTabMode: 0,
+    NavButtonTabBarMode.newTabMode: 1,
+    NavButtonTabBarMode.openedTabMode: 2,
+    NavButtonTabBarMode.defaultTabMode: 3,
+    NavButtonTabBarMode.profileTabMode: 4,
+  };
+
+  final Map<int, NavButtonTabBarMode> _indexToTab = {
+    0: NavButtonTabBarMode.menuTabMode,
+    1: NavButtonTabBarMode.newTabMode,
+    2: NavButtonTabBarMode.openedTabMode,
+    3: NavButtonTabBarMode.defaultTabMode,
+    4: NavButtonTabBarMode.profileTabMode,
+  };
+
+  // لیست tabهای موجود در navigation bar
+  final List<NavButtonTabBarMode> _navigationTabs = [
+    NavButtonTabBarMode.menuTabMode,
+    NavButtonTabBarMode.newTabMode,
+    NavButtonTabBarMode.openedTabMode,
+    NavButtonTabBarMode.defaultTabMode,
+    NavButtonTabBarMode.profileTabMode,
+  ];
+
+  Widget _getPage(NavButtonTabBarMode? tab) {
+    if (tab == null || tab == NavButtonTabBarMode.dashboardTabMode)
+      return const DashboardPage();
+
+    if (_pageCache.containsKey(tab.value)) {
+      _showSkeleton[tab.value] = _showSkeleton[tab.value] ?? false;
 
       return Skeletonizer(
-        enabled: _showSkeleton[index] ?? false,
-        child: _pageCache[index]!,
+        enabled: _showSkeleton[tab.value] ?? false,
+        child: _pageCache[tab.value]!,
       );
     }
-    final rawPage = _cacheManager.getOrCreate(index, () {
-      switch (index) {
-        case -1:
+    final rawPage = _cacheManager.getOrCreate(tab.value, () {
+      switch (tab) {
+        case NavButtonTabBarMode.dashboardTabMode:
           return const DashboardPage();
-        case 0:
-          return const PersonListPage(refreshData: true);
-        case 4:
+        case NavButtonTabBarMode.menuTabMode:
+          return const MenuPage();
+          // return const PersonListPage(refreshData: true);
+        case NavButtonTabBarMode.profileTabMode:
           return const ProfilePage(refreshData: true);
         default:
-          return Center(child: Text("صفحه ${index + 1}"));
+          return Center(child: Text("صفحه ${(tab!.value ?? 0)}"));
       }
     });
-    _pageCache[index] = rawPage;
-    _showSkeleton[index] = true;
-    _skeletonTimers[index]?.cancel();
-    _skeletonTimers[index] = Timer(const Duration(milliseconds: 400), () {
+    _pageCache[tab.value] = rawPage;
+    _showSkeleton[tab.value] = true;
+    _skeletonTimers[tab.value]?.cancel();
+    _skeletonTimers[tab.value] = Timer(const Duration(milliseconds: 400), () {
       if (!mounted) return;
       setState(() {
-        _showSkeleton[index] = false;
+        _showSkeleton[tab!.value] = false;
       });
     });
     return Skeletonizer(enabled: true, child: rawPage);
@@ -88,7 +118,12 @@ class _MainLayoutPageState extends State<MainLayoutPage> {
   Widget _paddedIcon(String assetPath) {
     return Padding(
       padding: EdgeInsets.only(top: topPadding),
-      child: Image.asset(assetPath, width: size, height: size),
+      child: Image.asset(
+        assetPath,
+        width: size,
+        height: size,
+        package: 'resources_package',
+      ),
     );
   }
 
@@ -102,7 +137,8 @@ class _MainLayoutPageState extends State<MainLayoutPage> {
   PreferredSizeWidget _getAppBar(NavButtonTabBarMode tab) {
     switch (tab) {
       case NavButtonTabBarMode.menuTabMode:
-        return ListAppBar(mode: AppBarsMode.erpApplicationMode);
+        return ListAppBar(mode: AppBarsMode.erpPersonListMode);
+        // return ListAppBar(mode: AppBarsMode.erpApplicationMode);
       case NavButtonTabBarMode.profileTabMode:
         return ListAppBar(mode: AppBarsMode.defaultMode);
       case NavButtonTabBarMode.dashboardTabMode:
@@ -114,17 +150,11 @@ class _MainLayoutPageState extends State<MainLayoutPage> {
   @override
   Widget build(BuildContext context) {
     final tabs = NavButtonTabBarMode.values;
-    final currentIndex = tabs.indexOf(_selectedTab);
-
+    // final currentIndex = tabs.indexOf(_selectedTab);
+    final currentIndex = _tabToIndex[_selectedTab] ?? 10;
     return Scaffold(
       appBar: _getAppBar(_selectedTab),
-      body: IndexedStack(
-        index: _selectedTab.value,
-        children: List.generate(
-          5,
-          (i) => i == _selectedTab.value ? _getPage(i) : const SizedBox(),
-        ),
-      ),
+      body: _getPage(_selectedTab),
       bottomNavigationBar: Container(
         decoration: const BoxDecoration(
           boxShadow: [
@@ -142,15 +172,18 @@ class _MainLayoutPageState extends State<MainLayoutPage> {
           ),
           child: BottomNavigationBar(
             backgroundColor: Colors.white,
-            currentIndex: currentIndex,
+            currentIndex: currentIndex >= 0 && currentIndex <= 4
+                ? currentIndex
+                : 0,
             enableFeedback: true,
             type: BottomNavigationBarType.fixed,
             landscapeLayout: BottomNavigationBarLandscapeLayout.linear,
             iconSize: 50,
             elevation: 0,
             onTap: (index) {
-              if (index >= 0 && index < tabs.length) {
-                _onItemTapped(tabs[index]);
+              final tab = _indexToTab[index];
+              if (tab != null) {
+                _onItemTapped(tab);
               }
             },
             items: [
@@ -257,3 +290,26 @@ class _MainLayoutPageState extends State<MainLayoutPage> {
     );
   }*/
 }
+
+// abstract class IPageBaseRules {
+//   bool get refreshPage;
+//   void turnOnRefreshOnLoad();
+//   void turnOffRefreshOnLoad();
+// }
+//
+// class MyPage implements IPageBaseRules {
+//   bool _refreshPage = true;
+//
+//   @override
+//   bool get refreshPage => _refreshPage;
+//
+//   @override
+//   void turnOnRefreshOnLoad() {
+//     _refreshPage = true;
+//   }
+//
+//   @override
+//   void turnOffRefreshOnLoad() {
+//     _refreshPage = false;
+//   }
+// }

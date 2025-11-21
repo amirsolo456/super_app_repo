@@ -15,6 +15,7 @@ class PersonListPage extends StatefulWidget {
 
 final Widget addIcon = Image.asset(
   'assets/images/add.png',
+  package: 'resources_package',
   width: 44,
   height: 44,
 );

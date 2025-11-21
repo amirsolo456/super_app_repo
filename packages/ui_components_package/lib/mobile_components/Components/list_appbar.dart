@@ -1,22 +1,45 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:models_package/Base/enums.dart';
 import 'package:resources_package/l10n/app_localizations.dart';
-
-
-import '../Headers/list_head_actionbar.dart';
+import 'package:ui_components_package/mobile_components/Headers/list_head_actionbar.dart';
 import 'list_pagination.dart';
 
 final Widget futuresIcon = Image.asset(
   'assets/images/futures.png',
+  package: 'resources_package',
   width: 24,
   height: 24,
-  package:'resources_package',
 );
 final Widget moreIcon = Image.asset(
   'assets/images/more.png',
+  package: 'resources_package',
   width: 24,
   height: 24,
-  package:'resources_package',
 );
+
+class ListAppBar extends StatelessWidget implements PreferredSizeWidget {
+  final AppBarsMode mode;
+
+  const ListAppBar({super.key, required this.mode});
+
+  @override
+  Widget build(BuildContext context) {
+    switch (mode) {
+      case AppBarsMode.erpPersonListMode:
+        return buildPersonListAppBar(context);
+
+      case AppBarsMode.erpApplicationMode:
+        return buildApplicationAppBar(context);
+
+      default:
+        return buildDefaultAppBar(context);
+    }
+  }
+
+  @override
+  Size get preferredSize => const Size.fromHeight(120);
+}
 
 AppBar buildPersonListAppBar(BuildContext context) {
   return AppBar(
@@ -30,12 +53,12 @@ AppBar buildPersonListAppBar(BuildContext context) {
       IconButton(
         onPressed: () {},
         icon: futuresIcon,
-        highlightColor: Colors.black.withAlpha(0),
+        highlightColor: Colors.black.withOpacity(0.05),
       ),
       IconButton(
         onPressed: () {},
         icon: moreIcon,
-        highlightColor: Colors.black.withAlpha(0),
+        highlightColor: Colors.black.withOpacity(0.05),
       ),
     ],
     backgroundColor: Colors.white,
@@ -52,5 +75,29 @@ AppBar buildPersonListAppBar(BuildContext context) {
         ),
       ),
     ),
+  );
+}
+
+AppBar buildApplicationAppBar(BuildContext context) {
+  return AppBar(
+    scrolledUnderElevation: 0.0,
+    elevation: 0.0,
+    backgroundColor: Colors.white,
+    primary: true,
+    title: Text(
+      AppLocalizations.of(context)!.profileTitle,
+      style: const TextStyle(color: Color(0xFF585858)),
+    ),
+    centerTitle: false,
+  );
+}
+
+AppBar buildDefaultAppBar(BuildContext context) {
+  return AppBar(
+    title: Text("صفحه ${1}"),
+    elevation: 0.0,
+    primary: true,
+    backgroundColor: Colors.white,
+    scrolledUnderElevation: 0.0,
   );
 }
